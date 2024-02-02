@@ -25,9 +25,6 @@ let reduceArr2 = Array.prototype.reduce.call(array2, (a, b) => {
 
 console.log(reduceArr2);
 
-
-let mns = "The car is not moving";
-
 class Car {
     constructor(brand, model, speed, motion) {
         this.brand = brand;
@@ -37,16 +34,51 @@ class Car {
     }
     check_motion() {
         if (this.speed > 0) {
-            mns = "The car is moving";
-            console.log(mns);
-            return this.motion;
+            return this.motion = "The car is moving"
+        } else {
+            return this.motion = "The car is stopped"
         }
     }
+    accelerate() {
+        return this.speed + 40;
+    }
+    brake() {
+        return this.speed - 40;
+    }
+    emergency_brake() {
+        return this.speed = 0;
+    }
 }
-console.log(mns);
 
-const myCar1 = new Car("tesla", "tesla-X", 230 , mns);
+let mns = "The car is not moving";
 
-document.getElementById("p2").innerHTML = myCar1.brand + " " + myCar1.model + " " + myCar1.speed + "kms" + " " + myCar1.motion
+const myCar1 = new Car("tesla", "X", 80, mns);
 
-let avv = 1
+document.getElementById("li1").innerHTML = `<spen style = "font-weight: 900;"> brand: </spen>` + myCar1.brand;
+document.getElementById("li2").innerHTML = `<spen style = "font-weight: 900;"> model: </spen>` + myCar1.model;
+document.getElementById("li3").innerHTML = `<spen style = "font-weight: 900;"> speed: </spen>` + myCar1.accelerate() + " kms";
+document.getElementById("li4").innerHTML = `<spen style = "font-weight: 900;"> motion: </spen>` + myCar1.check_motion();
+
+
+
+
+function addAsync(some) {
+    document.getElementById("demo").innerHTML = some;
+    console.log(some);
+}
+
+let myPromise = new Promise(function (resolve, reject) {
+    let x;
+    let v;
+
+    if (x === undefined && v === undefined) {
+        resolve("OK");
+    } else {
+        reject("Error");
+    }
+});
+
+myPromise.then(
+    function (value) { addAsync(value); },
+    function (error) { addAsync(error); }
+);
